@@ -10,19 +10,19 @@ This repository contains my **Python Regular Expressions (Regex)** problem-solvi
 
 Each problem has its own dedicated Python file, which includes:
 
-- **Problem Explanation** – A brief overview of the problem statement.  
-- **Solution Intuition** – The thought process and reasoning behind the regex pattern used.  
-- **Regex Pattern** – The final working pattern to match the required conditions.  
-- **Python Code** – A clean and structured implementation.  
+- **Problem Explanation** – A brief overview of the problem statement.
+- **Solution Intuition** – The thought process and reasoning behind the regex pattern used.
+- **Regex Pattern** – The final working pattern to match the required conditions.
+- **Python Code** – A clean and structured implementation.
 - **Alternative Patterns** (if applicable) – Other possible solutions or variations for better understanding.
 
 ## Why This Repository?
 
 This collection serves as a structured reference for:
 
-- Learning **Regex fundamentals** through real-world problem statements.  
-- Understanding how different **regex tokens and boundaries** work in practice.  
-- Exploring **pattern optimizations** and alternative approaches.  
+- Learning **Regex fundamentals** through real-world problem statements.
+- Understanding how different **regex tokens and boundaries** work in practice.
+- Exploring **pattern optimizations** and alternative approaches.
 - Building strong **regex problem-solving intuition** for interviews and assessments.
 
 ## Repository Structure
@@ -39,14 +39,16 @@ This collection serves as a structured reference for:
 # │   ├── problem_name_5.py
 # │   ├── problem_name_6.py
 ```
+## Example Solution Format
 
+```python
 # Problem: [Problem Title]
 # Difficulty: [Easy/Medium/Hard]
 # Skills: Python, Regular Expressions (re module)
 
 # Problem Statement:
-# [Provide a brief description of the problem. Mention what needs to be matched, whether case-sensitive, 
-# and any specific requirements about the match such as whole word, boundaries, or optional spaces.]
+# [Provide a brief description of the problem. Include requirements such as case-sensitivity, 
+# whole word matching, boundaries, optional spaces, etc.]
 
 # Example:
 # Test String:  [example input string]
@@ -78,8 +80,8 @@ print("Number of matches :", len(match))
 # [Break down the regex pattern and explain how each part works.
 # Describe how re.findall() collects all non-overlapping matches.
 # Explain why len(match) gives the correct count or result.]
+```
 
 I hope this repository helps you build a strong understanding of **Python regular expressions** and enhances your pattern-matching problem-solving skills.  
 
 Let’s learn and grow together! 🚀 Happy coding! 🎯
-
