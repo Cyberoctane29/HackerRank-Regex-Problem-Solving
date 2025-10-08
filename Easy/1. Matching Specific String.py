@@ -63,3 +63,25 @@ print("Number of matches :", len(match))
 # The parentheses create capture groups for these optional spaces.
 # re.findall() still returns all matches, but since groups are used, it returns tuples of matched parts.
 # len(match) gives the number of such matches found, regardless of spacing.
+
+# Solution 3
+
+Regex_Pattern = r'(?: |\b)hackerrank(?:\b| )'  # Do not delete 'r'.
+
+import re
+
+Test_String = input()
+match = re.findall(Regex_Pattern, Test_String)
+print("Number of matches :", len(match))
+
+# Intuition:
+# I used non-capturing groups and word boundaries to match "hackerrank" as a complete word,
+# while also allowing for optional spaces around it.
+# This is a cleaner and more precise approach than using capturing groups.
+
+# Explanation:
+# The pattern `(?: |\b)hackerrank(?:\b| )`:
+# - `(?: ...)` denotes a non-capturing group, so re.findall() returns only the matched word.
+# - `\b` ensures word boundaries, so partial words like "hackerranking" won't be matched.
+# - The space or boundary on either side allows flexibility with surrounding characters.
+# This approach improves accuracy while keeping the output simple.
