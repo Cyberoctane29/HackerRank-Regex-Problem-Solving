@@ -85,3 +85,24 @@ print("Number of matches :", len(match))
 # - `\b` ensures word boundaries, so partial words like "hackerranking" won't be matched.
 # - The space or boundary on either side allows flexibility with surrounding characters.
 # This approach improves accuracy while keeping the output simple.
+
+# Solution 4
+
+Regex_Pattern = r'\bhackerrank\b'  # Do not delete 'r'.
+
+import re
+
+Test_String = input()
+match = re.findall(Regex_Pattern, Test_String)
+print("Number of matches :", len(match))
+
+# Intuition:
+# I used word boundaries (\b) around "hackerrank" to ensure that the match is for the exact word only,
+# and not for occurrences where it appears as part of another word.
+
+# Explanation:
+# The pattern `\bhackerrank\b`:
+# - `\b` matches a word boundary (like the start or end of a word).
+# - This ensures that "hackerrank" is matched only as a standalone word, not as a substring of a larger word.
+# - re.findall() returns a list of all exact word matches.
+# This is a clean and minimal pattern ideal for exact word matching.
