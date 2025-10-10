@@ -3,7 +3,7 @@
 # Skills: Python, Regular Expressions (re module)
 
 # Problem Statement:
-# Given a test string S, match the pattern XXXXXXX  
+# Given a test string S, match the pattern XXxXXxXX  
 # where:
 #   - X = non-whitespace character (\S)
 #   - & = whitespace character (\s)
