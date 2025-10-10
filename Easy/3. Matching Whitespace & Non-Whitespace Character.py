@@ -6,7 +6,7 @@
 # Given a test string S, match the pattern XXxXXxXX  
 # where:
 #   - X = non-whitespace character (\S)
-#   - & = whitespace character (\s)
+#   - x = whitespace character (\s)
 # Specifically:
 # - 2 non-whitespace characters
 # - 1 whitespace character
