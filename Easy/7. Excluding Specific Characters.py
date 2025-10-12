@@ -1,5 +1,5 @@
 # Problem: Negated Character Classes  
-# Difficulty: Medium  
+# Difficulty: Easy
 # Skills: Python, Regular Expressions (re module)
 
 # Problem Statement:
