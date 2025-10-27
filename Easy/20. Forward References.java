@@ -13,13 +13,13 @@
 // - tactactictactic
 //
 // Invalid examples:
-// - tactactictactictictac → multiple consecutive `tic` or misplaced `tic`
-// - tactictac → first `tic` occurs before two `tac`
+// - tactactictactictictac → multiple consecutive “tic” or misplaced “tic”
+// - tactictac → first “tic” occurs before two “tac”
 //
 // Example:
 // Pattern:  (\2amigo|(go!))+  
 // Test String:  go!go!amigo  
-// Here, the regex uses a **forward reference** `\2` before group (2) is defined.
+// Here, the regex uses a forward reference `\2` before group (2) is defined.
 
 // ─────────────────────────────────────────────────────────────
 
@@ -45,19 +45,17 @@ public class Solution {
 }
 
 // Intuition (Solution 1):
-// - (\2tic|(tac)) → this uses a **forward reference**.
-// - \2 refers to the **second capturing group**, even though it appears later.
-// - The pattern ensures that “tic” only appears after “tac” has been matched (since \2 refers to (tac)).
-// - + repeats the pattern, allowing multiple “tac” and occasional “tic” only after conditions are met.
-// - The forward reference mechanism enforces sequencing without explicit counters.
+// - (\2tic|(tac)) uses a forward reference.
+// - \2 refers to the second capturing group (tac), even though it appears later.
+// - Ensures “tic” appears only after “tac” has already been matched.
+// - The + quantifier repeats the pattern, allowing multiple “tac” and occasional “tic”.
+// - Forward reference enforces sequencing without counters.
 
 // Explanation:
-// - ^ and $ → anchors ensure the pattern matches the entire string.
-// - (tac) → Group 2, matches “tac”.
-// - (\2tic|(tac)) → Group 1, matches either:
-//   - \2tic → “tactic” (allowed only after “tac” has occurred at least twice)
-//   - (tac) → “tac”
-// - The use of forward reference \2 guarantees order dependency between “tac” and “tic”.
+// - ^ and $ anchor the match to the full string.
+// - (tac) is Group 2.
+// - (\2tic|(tac)) is Group 1, matching either “tactic” or “tac”.
+// - The forward reference \2 guarantees order dependency between “tac” and “tic”.
 
 // ─────────────────────────────────────────────────────────────
 
@@ -83,13 +81,47 @@ public class Solution {
 }
 
 // Intuition (Solution 2):
-// - (tac){2,} → ensures at least two “tac” before anything else (satisfying the first condition).
-// - (tic(?!tic)|tac)* → allows repeating “tac” or “tic”, but prevents “tictic” (due to (?!tic) lookahead).
-// - This approach avoids forward references by using logical ordering and negative lookaheads.
+// - (tac){2,} ensures at least two “tac” before anything else.
+// - (tic(?!tic)|tac)* allows “tac” or isolated “tic”, but prevents “tictic” using a negative lookahead.
+// - This method avoids forward references entirely and uses logical ordering.
 
 // Explanation:
-// - ^ → start of string.
-// - (tac){2,} → must start with two or more “tac” sequences.
-// - (tic(?!tic)|tac)* → after that, any number of “tac” or isolated “tic” (not followed by another “tic”).
-// - $ → end of string.
-// - This satisfies all problem conditions without relying on advanced forward-reference behavior.
+// - ^ → start anchor.
+// - (tac){2,} → requires two or more “tac” at the start.
+// - (tic(?!tic)|tac)* → repeats “tac” or single “tic”.
+// - $ → end anchor.
+// - Fulfills all problem conditions with a simpler, more portable pattern.
+
+// ─────────────────────────────────────────────────────────────
+
+// Solution 3 — Simplified Pattern Logic
+
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        Pattern pattern = Pattern.compile("^(tac)(tactic|tac)+$");
+        Matcher matcher = pattern.matcher(s);
+        if (matcher.matches()) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+    }
+}
+
+// Intuition (Solution 3):
+// - Starts with one “tac” to ensure the sequence begins correctly.
+// - (tactic|tac)+ repeats either “tactic” or “tac” for the rest of the string.
+// - This indirectly ensures that “tic” appears only after “tac” has occurred at least once before.
+
+// Explanation:
+// - ^ and $ → match the full string.
+// - (tac) → ensures the string starts with “tac”.
+// - (tactic|tac)+ → repeats valid “tac” or “tactic” segments.
+// - Though simpler, it still maintains proper sequencing and avoids consecutive “tic”.
