@@ -55,12 +55,12 @@
 # print(";".join(unique))
 
 
-# Solution
+# Solution 1
 
 import re
 
 n = int(input())
-pattern = r'<\s*([a-z0-9]+)'  # Capture tag names, ignoring attributes and closing slashes
+pattern = r'<\s*([a-zA-Z0-9]+)'  # Capture tag names, ignoring attributes and closing slashes
 matches = []
 for _ in range(n):
     line = input()
@@ -81,3 +81,22 @@ print(";".join(unique))
 # - Convert to a set to remove duplicates.
 # - Sort lexicographically.
 # - Join with ';' to print in the required format.
+
+# Solution 2 (Alternative approach using sys.stdin)
+
+import sys, re
+
+data = sys.stdin.read()  
+pattern = r'<\s*([a-zA-Z0-9]+)'  # Supports both lowercase and uppercase tag names
+matches = re.findall(pattern, data)
+unique = sorted(set(matches))
+print(";".join(unique))
+
+# Intuition:
+# - Instead of reading N line by line, we read all input at once using sys.stdin.read().
+# - The regex allows both uppercase and lowercase letters in tag names.
+#
+# Explanation:
+# - `re.findall()` extracts all tag names from the entire HTML input.
+# - We use `set()` to remove duplicates and `sorted()` for lexicographic order.
+# - Output is printed as semicolon-separated unique tag names.
