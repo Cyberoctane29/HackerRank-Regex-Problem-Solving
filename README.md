@@ -6,7 +6,6 @@ This repository contains my **Python Regular Expressions (Regex)** problem-solvi
 
 - **Easy**
 - **Medium**
-- **Hard**
 
 Each problem has its own dedicated Python file, which includes:
 
@@ -35,15 +34,12 @@ This collection serves as a structured reference for:
 # │── Medium/
 # │   ├── problem_name_3.py
 # │   ├── problem_name_4.py
-# │── Hard/
-# │   ├── problem_name_5.py
-# │   ├── problem_name_6.py
 ```
 ## Example Solution Format
 
 ```python
 # Problem: [Problem Title]
-# Difficulty: [Easy/Medium/Hard]
+# Difficulty: [Easy/Medium]
 # Skills: Python, Regular Expressions (re module)
 
 # Problem Statement:
