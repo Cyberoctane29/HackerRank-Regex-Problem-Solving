@@ -66,7 +66,7 @@ ipv4pattern = (
 ipv6pattern = r'^[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){7}$'
 
 for _ in range(n):
-    s = input().strip()
+    s = input()
     if bool(re.search(ipv4pattern, s)):
         print("IPv4")
     elif bool(re.search(ipv6pattern, s)):
