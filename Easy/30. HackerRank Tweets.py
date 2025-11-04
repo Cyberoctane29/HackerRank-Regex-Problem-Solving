@@ -1,4 +1,4 @@
-# Problem: Detect Tweets Containing “hackerrank”  
+# Problem: HackerRank Tweets 
 # Difficulty: Easy  
 # Skills: Python, Regular Expressions (re module), String Matching  
 
