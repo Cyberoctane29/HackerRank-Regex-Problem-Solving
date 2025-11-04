@@ -85,7 +85,7 @@ print(ans)
 #   but it demonstrates another valid regex style.
 
 
-# Solution 3 (Recommended)
+# Solution 3
 
 import re
 
