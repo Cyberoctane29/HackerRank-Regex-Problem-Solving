@@ -32,7 +32,7 @@ This collection serves as a structured reference for:
 # │   ├── problem_name_1.py
 # │   ├── problem_name_2.java
 # │── Medium/
-# │   ├── problem_name_3.java
+# │   ├── problem_name_3.py
 # │   ├── problem_name_4.java
 ```
 ## Example Solution Format
@@ -107,8 +107,6 @@ print("Number of matches :", len(match))
 //         System.out.println(matcher.find());  // or matcher.matches(), depending on the problem
 //     }
 // }
-
-// ─────────────────────────────────────────────────────────────
 
 // Solution
 
