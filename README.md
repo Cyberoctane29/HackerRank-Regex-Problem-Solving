@@ -60,7 +60,7 @@ This collection serves as a structured reference for:
 
 # Solution
 
-Regex_Pattern = r'[your_pattern_here]'  # Do not delete 'r'.
+Regex_Pattern = r'[your_regex_here]'  # Do not delete 'r'.
 
 import re
 
