@@ -60,27 +60,27 @@ pattern_end = r'\shackerrank$'     # Matches if line ends with "hackerrank"
 pattern_exact = r'^hackerrank$'    # Matches if line is exactly "hackerrank"
 
 for _ in range(n):
-    s = input().strip()
-    if bool(re.search(pattern_exact, s)):
-        print(0)
-    elif bool(re.search(pattern_start, s)):
+    s = input()
+    if bool(re.search(pattern_start, s)):
         print(1)
     elif bool(re.search(pattern_end, s)):
         print(2)
+    elif bool(re.search(pattern_exact, s)):
+        print(0)
     else:
         print(-1)
 
 # Intuition:
-# - We use three regex patterns to check whether the word “hackerrank” is at the beginning,
-#   at the end, or is the only word in the line.
+# - The program checks for the position of the word “hackerrank” in each line.
+# - The order of conditions matches the problem statement logic:
+#   1. Check if it starts with “hackerrank”
+#   2. Then if it ends with “hackerrank”
+#   3. Then if it’s exactly “hackerrank”
+#   4. Otherwise, return -1
 #
 # Explanation of the Regex:
-# 1. `^hackerrank\s` → Matches "hackerrank" at the **start** of the line, followed by a space.
-# 2. `\shackerrank$` → Matches "hackerrank" at the **end** of the line, preceded by a space.
-# 3. `^hackerrank$` → Matches if the entire string is exactly "hackerrank".
+# 1. `^hackerrank\s` → Matches if the line **starts** with "hackerrank" followed by a space.
+# 2. `\shackerrank$` → Matches if the line **ends** with "hackerrank" preceded by a space.
+# 3. `^hackerrank$` → Matches if the line contains **only** "hackerrank".
 #
-# - The order of checking matters:
-#   - First, check if it’s both start and end (exact match).
-#   - Then check if it starts with.
-#   - Then check if it ends with.
-#   - Otherwise, return -1.
+# Each regex uses anchors (^ and $) to ensure exact position matches in the conversation string.
