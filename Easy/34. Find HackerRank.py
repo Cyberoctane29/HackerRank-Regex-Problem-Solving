@@ -55,9 +55,9 @@
 import re
 
 n = int(input())
-pattern_start = r'^hackerrank(\s|$)'   # Matches if line starts with "hackerrank"
-pattern_end = r'(\s|^)hackerrank$'     # Matches if line ends with "hackerrank"
-pattern_exact = r'^hackerrank$'        # Matches if line is exactly "hackerrank"
+pattern_start = r'^hackerrank\s'   # Matches if line starts with "hackerrank"
+pattern_end = r'\shackerrank$'     # Matches if line ends with "hackerrank"
+pattern_exact = r'^hackerrank$'    # Matches if line is exactly "hackerrank"
 
 for _ in range(n):
     s = input().strip()
@@ -74,19 +74,13 @@ for _ in range(n):
 # - We use three regex patterns to check whether the word “hackerrank” is at the beginning,
 #   at the end, or is the only word in the line.
 #
-# Explanation:
-# 1. `^hackerrank(\s|$)` → Matches "hackerrank" at the **start** of the string.
-#    - `^` ensures it’s at the beginning.
-#    - `(\s|$)` ensures it’s followed by either a space or end of line.
-#
-# 2. `(\s|^)hackerrank$` → Matches "hackerrank" at the **end** of the string.
-#    - `$` ensures it’s at the end.
-#    - `(\s|^)` ensures it’s preceded by either a space or start of line.
-#
+# Explanation of the Regex:
+# 1. `^hackerrank\s` → Matches "hackerrank" at the **start** of the line, followed by a space.
+# 2. `\shackerrank$` → Matches "hackerrank" at the **end** of the line, preceded by a space.
 # 3. `^hackerrank$` → Matches if the entire string is exactly "hackerrank".
 #
 # - The order of checking matters:
-#   - First, check if it's both start and end (exact match).
+#   - First, check if it’s both start and end (exact match).
 #   - Then check if it starts with.
 #   - Then check if it ends with.
 #   - Otherwise, return -1.
