@@ -45,7 +45,7 @@
 # - X is not in the valid list, so it’s invalid.
 
 
-# Solution
+# Solution 1
 
 import re
 
@@ -77,7 +77,7 @@ for _ in range(n):
 # - Each line has an `api_id` followed by a language name.
 # - We extract the last word (language) using `line_pattern`.
 # - Then, we check if it matches one of the predefined valid languages in `valid_pattern`.
-
+#
 # Explanation:
 # 1. `line_pattern = r'\s([A-Z]+)$'`
 #    - `\s` → Matches the space before the language.
@@ -89,3 +89,31 @@ for _ in range(n):
 #    - Anchored with `^` and `$` to ensure full string match.
 #
 # The script checks each line, extracts the language, and prints "VALID" or "INVALID" accordingly.
+
+
+# Solution 2
+
+import re
+
+n = int(input())
+valid_pattern = (
+    r'^(C|CPP|JAVA|PYTHON|PERL|PHP|RUBY|CSHARP|HASKELL|CLOJURE|BASH|SCALA|'
+    r'ERLANG|CLISP|LUA|BRAINFUCK|JAVASCRIPT|GO|D|OCAML|R|PASCAL|SBCL|DART|'
+    r'GROOVY|OBJECTIVEC)$'
+)
+
+for _ in range(n):
+    api_id, s = input().split()
+    if re.search(valid_pattern, s):
+        print("VALID")
+    else:
+        print("INVALID")
+
+# Intuition:
+# - This approach splits each line into two parts directly: `api_id` and `language`.
+# - It eliminates the need for an additional regex to extract the language.
+#
+# Explanation:
+# - The language part (`s`) is directly matched against the `valid_pattern`.
+# - If it matches one of the valid listed languages → print "VALID".
+# - Otherwise → print "INVALID".
