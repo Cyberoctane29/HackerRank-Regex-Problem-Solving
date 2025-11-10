@@ -52,6 +52,26 @@ n = int(input())
 pattern = r'^(\d{1,3})(?:-|\s)(\d{1,3})(?:-|\s)(\d{4,10})$'
 
 for _ in range(n):
+    match = re.search(pattern, input())
+    s1, s2, s3 = match.groups()
+    print(f"CountryCode={s1},LocalAreaCode={s2},Number={s3}")
+
+# Intuition:
+# - Instead of calling re.search() multiple times, we call it once per line.
+# - `.groups()` returns a tuple of all captured groups in the match (country, area, number).
+#
+# Explanation:
+# - This version is cleaner and more efficient.
+# - Both versions yield identical output, but this one avoids redundant regex lookups.
+
+# Solution 2
+
+import re
+
+n = int(input())
+pattern = r'^(\d{1,3})(?:-|\s)(\d{1,3})(?:-|\s)(\d{4,10})$'
+
+for _ in range(n):
     s = input()
     s1 = re.search(pattern, s).group(1)
     s2 = re.search(pattern, s).group(2)
@@ -67,24 +87,3 @@ for _ in range(n):
 # - re.search(pattern, s) finds the pattern in each input line.
 # - group(1), group(2), and group(3) correspond to the respective parts of the number.
 # - The formatted output prints the extracted segments.
-
-
-# Solution 2
-
-import re
-
-n = int(input())
-pattern = r'^(\d{1,3})(?:-|\s)(\d{1,3})(?:-|\s)(\d{4,10})$'
-
-for _ in range(n):
-    match = re.search(pattern, input())
-    s1, s2, s3 = match.groups()
-    print(f"CountryCode={s1},LocalAreaCode={s2},Number={s3}")
-
-# Intuition:
-# - Instead of calling re.search() multiple times, we call it once per line.
-# - `.groups()` returns a tuple of all captured groups in the match (country, area, number).
-#
-# Explanation:
-# - This version is cleaner and more efficient.
-# - Both versions yield identical output, but this one avoids redundant regex lookups.
