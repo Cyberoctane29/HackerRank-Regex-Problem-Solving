@@ -57,7 +57,7 @@ for _ in range(t):
     us_word = test_word.replace("our", "or")  # Create US variant
 
     # Pattern matches either UK or US spelling as a whole word
-    pattern = rf'\b({test_word}|{us_word})\b'
+    pattern = rf'\b(?:{test_word}|{us_word})\b'
 
     ans = 0
     for line in lines:
