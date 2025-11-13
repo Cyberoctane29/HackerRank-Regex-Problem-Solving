@@ -1,48 +1,43 @@
-# Problem: The British and American Style of Spelling  
+# Problem: British and American Style of Spelling  
 # Difficulty: Easy  
-# Skills: Python, Regular Expressions (re module), String Pattern Matching  
+# Skills: Python, Regular Expressions, String Processing  
 
 # Problem Statement:
-# American English and British English often differ in their spellings.  
-# A common difference is that words ending in **-ze** in American English  
-# often end in **-se** in British English (e.g., "analyze" → "analyse").  
+# American English words ending in **-ze** (e.g., analyze, recognize) often end in **-se** 
+# in British English (analyse, recognise).
 #
-# Given the American-English spelling of a word ending with "ze",  
-# find the **total occurrences** of both its American and British variants  
-# across a given set of text lines.
+# Given the **American** spelling of a word ending in "ze", count how many times **both the 
+# American and British** variants occur in a set of sentences.
 #
-# Input Format:
-# - The first line: integer N (number of text lines)
-# - Next N lines: each line contains a sequence of words separated by spaces
-# - Next line: integer T (number of test cases)
-# - Next T lines: each contains a word W' (American spelling ending with "ze")
+# Input:
+# - First line: integer N (number of lines)
+# - Next N lines: sequences of lowercase words
+# - Next line: integer T (number of test queries)
+# - Next T lines: each contains an American English word ending in "ze"
 #
-# Output Format:
-# - For each test case, print the total count of both variants (ending in "ze" and "se")
+# Output:
+# For each test word, print the total number of occurrences of both:
+#   - American spelling (ending in "ze")
+#   - British spelling (same word but ending in "se")
 #
 # Constraints:
 # - 1 ≤ N ≤ 10
 # - Each line ≤ 10 words
-# - Each word contains only lowercase letters (a–z)
+# - All words are lowercase alphabets
 # - 1 ≤ T ≤ 10
-# - 1 ≤ length(W or W') ≤ 20
-# - Every test word W' ends with "ze"
+# - Word length ≤ 20
+# - Test word always ends with "ze"
 #
 # Example:
 # Input:
 # 2
-# the organization will organize a meeting
-# in british english they organise differently
+# he will analyze the data
+# she must analyse it properly
 # 1
-# organize
+# analyze
 #
 # Output:
 # 2
-#
-# Explanation:
-# - "organize" appears once.
-# - "organise" (UK variant) appears once.
-# - Total = 2.
 
 
 # Solution
@@ -50,29 +45,31 @@
 import re
 
 n = int(input())
-lines = [input() for _ in range(n)]
+lines = [input() for _ in range(n)]  # Store all lines
 
 t = int(input())
+
 for _ in range(t):
-    test_word = input()  # American spelling (ends in 'ze')
-    uk_word = test_word.replace('ze', 'se')  # Convert to British spelling
+    american = input()             # Word ending in "ze"
+    british = american[:-2] + "se" # Replace trailing "ze" with "se"
 
-    # Match either American (-ze) or British (-se) variants as whole words
-    pattern = rf'\b({test_word}|{uk_word})\b'
+    # Match whole-word American OR British spelling
+    pattern = rf'\b(?:{american}|{british})\b'
 
-    ans = 0
+    total = 0
     for line in lines:
-        ans += len(re.findall(pattern, line))
-    print(ans)
+        total += len(re.findall(pattern, line))
+    print(total)
 
 # Intuition:
-# - The task requires counting both forms of the word: one ending in "ze" (US) and one ending in "se" (UK).
-# - The regex pattern `\b` ensures we only match **whole words**, not substrings.
-# - Using an alternation `|` allows matching either variant in one pass.
+# - US version ends with "ze"
+# - UK version ends with "se"
+# - We simply replace the final "ze" → "se" to form the British version
 #
 # Explanation:
-# 1. For a test word like "organize":
-#     - British variant becomes "organise".
-#     - The regex becomes `\b(organize|organise)\b`.
-# 2. `re.findall()` counts all appearances of both spellings across the given lines.
-# 3. The total occurrences are printed for each test word.
+# 1. british = american[:-2] + "se"
+#    - Cuts off "ze", appends "se".
+# 2. pattern = r'\b(?:american|british)\b'
+#    - Matches either variant as a whole word.
+# 3. re.findall() counts occurrences in every sentence.
+# 4. Sum all counts and print.
