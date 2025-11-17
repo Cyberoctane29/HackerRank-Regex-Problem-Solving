@@ -32,14 +32,13 @@
 
 import re
 
+n = int(input())
 # Pattern:
 #   href="URL" ... > inner HTML text </a>
 pattern = r'href="([^"]*)"[^>]*>(.*?)</a>'
 
 # Pattern to remove all inner HTML tags to extract visible text
 remove_tags = re.compile(r'<[^>]+>')
-
-n = int(input())
 
 for _ in range(n):
     html = input()
