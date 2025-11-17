@@ -1,71 +1,87 @@
-# Problem: Detect HTML Links and Text Names  
+# Problem: HTML Link Extractor  
 # Difficulty: Easy  
-# Skills: Python, Regular Expressions (re module), HTML Parsing  
+# Skills: Python, Regular Expressions (re module), HTML Parsing
 
 # Problem Statement:
-# Charlie must extract:
-#   1. The hyperlink URL from each <a href="..."> tag.
-#   2. The visible text associated with the link.
+# Given HTML fragments, extract:
+#   1. The URL inside each <a href="..."> tag  
+#   2. The visible text associated with the link  
 #
-# Important:
-# - The text may be nested inside multiple inner HTML tags.
-#   Example:
-#       <a href="..."><h1><b>HackerRank</b></h1></a>
-#   The visible text is: HackerRank
+# The visible text may contain nested tags:
+#     <a href="link"><b><i>Text</i></b></a>
+# In such cases, strip all tags to get only the pure text.
 #
 # Input:
-# - First line: integer N (number of lines)
-# - Next N lines: HTML fragment
+# - First line: integer N (number of HTML lines)
+# - Next N lines: HTML content
 #
 # Output:
-# - One line per hyperlink found:
-#       link,text
-#   The link and the text must have no surrounding spaces.
-# - Order of output must match the order links appear in the HTML.
+# For each link:
+#   link,text
+# (no extra spaces, text is stripped)
 #
-# Notes:
-# - Some links may have empty or missing text → print: link,
-# - Nested tags inside the link text must be removed.
-# - Input size ≤ 10000 characters.
+# Example:
+# Input:
+# <a href="abc">Hello</a>
+# <a href="xyz"><b>Click</b> here</a>
+#
+# Output:
+# abc,Hello
+# xyz,Click here
 
-# Solution
+
+# Solution 1
 
 import re
 
+pattern = r'href="([^"]*)"[^>]*>(.*?)</a>'   # Captures link and inner HTML
+remove_tags = r'<[^>]+>'                     # Removes nested tags
+
 n = int(input())
-# Pattern:
-#   href="URL" ... > inner HTML text </a>
-pattern = r'href="([^"]*)"[^>]*>(.*?)</a>'
-
-# Pattern to remove all inner HTML tags to extract visible text
-remove_tags = re.compile(r'<[^>]+>')
-
 for _ in range(n):
     html = input()
 
-    # Find each hyperlink (URL + inner HTML content)
     for link, inner in re.findall(pattern, html):
-        # Remove nesting tags inside the inner text
+        text = re.sub(remove_tags, '', inner).strip()
+        print(f"{link},{text}")
+
+# Intuition:
+# - Find all <a ... href="URL">inner HTML</a> blocks.
+# - Extract the link with group(1).
+# - Remove all nested tags inside inner HTML using remove_tags.
+# - Strip extra spaces and print.
+
+
+# Explanation:
+# 1. pattern:
+#    - href="([^"]*)" → captures URL inside quotes.
+#    - (.*?)</a>      → captures everything until closing </a> (non-greedy).
+#
+# 2. remove_tags:
+#    - Matches any <...> HTML tag and removes it, leaving only visible text.
+#
+# 3. Strip whitespace and print "URL,text".
+
+
+# Solution 2 (compiled regex for efficiency)
+
+import re
+
+pattern = r'href="([^"]*)"[^>]*>(.*?)</a>'
+remove_tags = re.compile(r'<[^>]+>')   # Precompiled tag remover
+
+n = int(input())
+for _ in range(n):
+    html = input()
+
+    for link, inner in re.findall(pattern, html):
         text = remove_tags.sub('', inner).strip()
         print(f"{link},{text}")
 
 # Intuition:
-# - The outer regex extracts:
-#     group(1): the URL inside href=""
-#     group(2): everything between > and </a> (may include nested tags)
-# - We then remove all inner tags (e.g., <b>, <h1>, <span>…) using another regex.
-# - Strip extra spaces.
-#
-# Explanation of the Regex:
-# 1. href="([^"]*)"
-#       - Captures any URL inside the href attribute.
-# 2. [^>]*>
-#       - Allows other optional attributes before closing '>'.
-# 3. (.*?)
-#       - Non-greedy capture of the text inside the <a>...</a>.
-# 4. </a>
-#       - Ensures we match until closing tag.
-#
-# The extracted inner text may still contain tags, so:
-#   remove_tags = re.compile(r'<[^>]+>')
-#   removes all <...> occurrences, leaving visible text only.
+# - Same as Solution 1, but compiled regex speeds up repeated substitution.
+
+# Explanation:
+# - re.findall locates all <a href="...">...</a> occurrences.
+# - remove_tags.sub removes nested HTML tags efficiently.
+# - Output matches required "link,text" format.
