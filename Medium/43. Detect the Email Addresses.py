@@ -28,7 +28,6 @@
 # Output:
 # hackers@hackerrank.com;product@hackerrank.com
 
-
 # Solution 1
 
 import re
