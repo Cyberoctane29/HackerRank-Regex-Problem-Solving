@@ -6,7 +6,7 @@
 # You are given up to 100 lines of text. Your task is to extract all unique e-mail addresses
 # that appear in the text and print them in lexicographical order, separated by semicolons.
 #
-# Simplified e-mail rules for this challenge:
+# Smplified e-mail rules for this challenge:
 # - Before the '@': one or more strings separated by dots
 #   allowed characters → a–z, A–Z, 0–9, underscore (_), dot (.), %, +, -
 # - After the '@': similar allowed strings separated by dots
