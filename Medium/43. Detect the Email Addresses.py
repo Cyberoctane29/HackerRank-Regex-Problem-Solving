@@ -8,7 +8,7 @@
 #
 # Simplified e-mail rules for this challenge:
 # - Before the '@': one or more strings separated by dots
-#   allowed characters → a–z, A–Z, 0–9, underscore (_), dot (.), %, +, -
+#   allowed characters → a–z, AZ, 0–9, underscore (_), dot (.), %, +, -
 # - After the '@': similar allowed strings separated by dots
 # - Must end with a valid domain suffix: at least 2 letters (e.g., .com, .in, .org)
 #
