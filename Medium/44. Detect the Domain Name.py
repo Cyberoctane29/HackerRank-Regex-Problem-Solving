@@ -1,6 +1,6 @@
 # Problem: Detect the Domain Name  
 # Difficulty: Medium  
-# Skills: Python, Reular Expressions (re module), String Extraction  
+# Skills: Python, Regular Expressions (re module), String Extraction  
 
 # Problem Statement:
 # You are given N lines of an HTML fragment. Your task is to extract **unique domain names**
