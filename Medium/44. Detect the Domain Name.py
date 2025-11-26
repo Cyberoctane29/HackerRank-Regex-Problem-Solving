@@ -2,7 +2,7 @@
 # Difficulty: Medium  
 # Skills: Python, Regular Expressions (re module), String Extraction  
 
-# Problem Staement:
+# Problem Statement:
 # You are given N lines of an HTML fragment. Your task is to extract **unique domain names**
 # appearing inside any HTTP/HTTPS URLs in the markup.
 #
